@@ -10,10 +10,6 @@
 
 This repository presents the **Λ-Core Duality Framework**, a novel spectral approach to the Riemann Hypothesis that models the distribution of prime numbers as competing quantum forces. The framework proposes that the nontrivial zeros of the Riemann zeta function correspond to the eigenvalues of a quantum mechanical Hamiltonian built from prime number potentials.
 
-### About the Author
-
-**Sethu Iyer** is an interdisciplinary AI researcher and data scientist with expertise spanning mathematics, computer science, and mathematical physics. He holds a dual degree (M.Sc Mathematics & B.E Computer Science) from BITS Pilani and has published research in machine learning and computer vision. His current research focuses on developing novel interpretability metrics for LLMs and exploring connections between computational systems and fundamental mathematical structures. More information is available at [sethuiyer.github.io](https://sethuiyer.github.io/) and [Google Scholar](https://scholar.google.com/citations?user=ivR07L8AAAAJ&hl=en).
-
 ### Key Innovation
 
 We construct a spectral operator of the form:
@@ -158,6 +154,11 @@ This is an active research project. Contributions welcome in:
 - **Theoretical Extensions**: Connections to related mathematical areas
 
 Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+
+
+### About the Author
+
+**Sethu Iyer** is an interdisciplinary AI researcher and data scientist with expertise spanning mathematics, computer science, and mathematical physics. He holds a dual degree (M.Sc Mathematics & B.E Computer Science) from BITS Pilani and has published research in machine learning and computer vision. His current research focuses on developing novel interpretability metrics for LLMs and exploring connections between computational systems and fundamental mathematical structures. More information is available at [sethuiyer.github.io](https://sethuiyer.github.io/) and [Google Scholar](https://scholar.google.com/citations?user=ivR07L8AAAAJ&hl=en).
 
 ## Publications and References
 
