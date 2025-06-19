@@ -39,6 +39,18 @@ where the potential `V(y)` encodes the complete prime spectrum through weighted 
 
 **Overall Framework Validation**: 3/4 components fully successful, with clear path for eigenvalue improvement.
 
+## Media and Outreach
+
+This research program is complemented by an active public outreach initiative on the **[Space Time Cafe](https://www.youtube.com/@SethuIyer95)** YouTube channel. The channel features over 40 long-form episodes exploring the deep connections between physics, mathematics, and computer science that form the foundation of the Λ-Core framework.
+
+### Featured Episode: The Majorana-Riemann Hypothesis Connection
+
+A detailed, 50-minute deep dive into the core concepts of this repository was presented in **[Episode 2: The Majorana-Riemann Hypothesis Connection – A Breakdown](https://www.youtube.com/watch?v=cxMhh-0aysc&t=435s)**. The episode has garnered over 1,600 views and serves as an excellent conceptual introduction to the spectral approach, topological superconductors, and the physical intuition behind the framework.
+
+[![Majorana-Riemann Hypothesis Connection Video Thumbnail](https://i.ytimg.com/vi/cxMhh-0aysc/hqdefault.jpg)](https://www.youtube.com/watch?v=cxMhh-0aysc)
+
+This video provides the narrative and philosophical context for the rigorous mathematical and computational work presented in this repository.
+
 ## Repository Structure
 
 ```
