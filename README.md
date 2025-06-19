@@ -6,6 +6,9 @@
 [![Python](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![Mathematical Research](https://img.shields.io/badge/field-Mathematical%20Physics-green.svg)](https://github.com/topics/mathematical-physics)
 
+![logo](./logo.webp)
+
+
 ## Overview
 
 This repository presents the **Λ-Core Duality Framework**, a novel spectral approach to the Riemann Hypothesis that models the distribution of prime numbers as competing quantum forces. The framework proposes that the nontrivial zeros of the Riemann zeta function correspond to the eigenvalues of a quantum mechanical Hamiltonian built from prime number potentials.
