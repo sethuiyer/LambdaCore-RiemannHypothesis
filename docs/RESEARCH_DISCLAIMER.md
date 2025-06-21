@@ -1,6 +1,6 @@
 # Research Disclaimer: Spectral-Geometric Approach to Riemann Zeta Zeros
 
-**Author:** Sethurathienam Iyer (sethuiyer95@gmail.com)  
+**Author:** Sethurathienam Iyer (sethuiyer95@gmail.com) 
 **Date:** December 2024
 
 ---
@@ -15,25 +15,25 @@ While the paper is structured as a theoretical framework, I want to be completel
 
 ## **What This Research ACTUALLY Achieves:**
 
-### ✅ **Verified Accomplishments:**
+### **Verified Accomplishments:**
 
 1. **Ultra-High Precision Numerical Discovery**
-   - Discovered a remarkable correspondence: λ_k ≈ τ_k² + 1/2
-   - Achieved 0.037% relative error for the first Riemann zero
-   - Systematic verification across 10 zeta zeros with sub-0.21% errors
-   - Used N=16,000 grid points with rigorous convergence analysis
+ - Discovered a remarkable correspondence: λ_k ≈ τ_k² + 1/2
+ - Achieved 0.037% relative error for the first Riemann zero
+ - Systematic verification across 10 zeta zeros with sub-0.21% errors
+ - Used N=16,000 grid points with rigorous convergence analysis
 
 2. **Novel Geometric Construction**
-   - Defined the "inverted Poincaré manifold" with interesting curvature properties
-   - Constructed a self-adjoint operator with positive spectrum
-   - Established essential self-adjointness using Weyl's criterion
+ - Defined the "inverted Poincaré manifold" with interesting curvature properties
+ - Constructed a self-adjoint operator with positive spectrum
+ - Established essential self-adjointness using Weyl's criterion
 
 3. **Solid Computational Mathematics**
-   - Rigorous finite difference discretization methods
-   - Systematic error analysis and convergence studies
-   - High-precision implementation with proper numerical verification
+ - Rigorous finite difference discretization methods
+ - Systematic error analysis and convergence studies
+ - High-precision implementation with proper numerical verification
 
-### 🔬 **Empirical Evidence Suggesting Deeper Structure:**
+### **Empirical Evidence Suggesting Deeper Structure:**
 - The numerical precision (0.037% error) strongly suggests this isn't coincidental
 - The systematic agreement across multiple zeros indicates potential underlying mathematics
 - The geometric framework provides an interesting new perspective on spectral approaches
@@ -42,22 +42,22 @@ While the paper is structured as a theoretical framework, I want to be completel
 
 ## **What This Research Does NOT Establish:**
 
-### ❌ **Major Gaps That Prevent This Being a Complete Proof:**
+### **Major Gaps That Prevent This Being a Complete Proof:**
 
 1. **Missing Heat Trace Derivation**
-   - The correspondence ζ_L(w) = C · ξ(2w) is ASSUMED, not proven
-   - Called it an "axiom" in the paper - this is a massive analytical gap
-   - Would require advanced techniques in spectral theory on singular manifolds
+ - The correspondence ζ_L(w) = C · ξ(2w) is ASSUMED, not proven
+ - Called it an "axiom" in the paper - this is a massive analytical gap
+ - Would require advanced techniques in spectral theory on singular manifolds
 
 2. **Unproven Spectral Correspondence**
-   - The connection between our discretized eigenvalues and actual zeta zeros is empirical
-   - No rigorous proof that the continuous limit recovers the zeta function
-   - The 3/4 vs 1/2 constant discrepancy needs theoretical resolution
+ - The connection between our discretized eigenvalues and actual zeta zeros is empirical
+ - No rigorous proof that the continuous limit recovers the zeta function
+ - The 3/4 vs 1/2 constant discrepancy needs theoretical resolution
 
 3. **Incomplete Analytical Framework**
-   - Missing rigorous derivation of the renormalized heat trace formula
-   - No proof that our operator's spectrum actually corresponds to zeta zeros
-   - Gap between geometric construction and arithmetic properties
+ - Missing rigorous derivation of the renormalized heat trace formula
+ - No proof that our operator's spectrum actually corresponds to zeta zeros
+ - Gap between geometric construction and arithmetic properties
 
 ---
 
@@ -65,7 +65,7 @@ While the paper is structured as a theoretical framework, I want to be completel
 
 ### **What This IS:**
 - **Promising numerical research** suggesting new connections
-- **Novel geometric approach** worth further investigation  
+- **Novel geometric approach** worth further investigation 
 - **High-quality computational mathematics** with interesting results
 - **Foundation for future theoretical work**
 
@@ -112,16 +112,16 @@ While the paper is structured as a theoretical framework, I want to be completel
 To develop this into more rigorous mathematics, future work should focus on:
 
 1. **Rigorous Heat Trace Analysis**
-   - Derive the renormalized heat trace formula from first principles
-   - Establish precise asymptotics for the heat kernel on our manifold
+ - Derive the renormalized heat trace formula from first principles
+ - Establish precise asymptotics for the heat kernel on our manifold
 
 2. **Spectral Theory Development**
-   - Prove the correspondence between operator eigenvalues and zeta zeros
-   - Resolve the constant term discrepancies through careful analysis
+ - Prove the correspondence between operator eigenvalues and zeta zeros
+ - Resolve the constant term discrepancies through careful analysis
 
 3. **Analytical Foundations**
-   - Develop the connection to Selberg trace formulas rigorously
-   - Establish the link between geometry and arithmetic explicitly
+ - Develop the connection to Selberg trace formulas rigorously
+ - Establish the link between geometry and arithmetic explicitly
 
 ---
 
@@ -139,7 +139,7 @@ This research represents a step toward understanding potential connections betwe
 
 I'm interested in working with researchers who might help:
 - Close the analytical gaps in the theoretical framework
-- Develop the heat trace analysis more rigorously  
+- Develop the heat trace analysis more rigorously 
 - Explore the numerical patterns further
 - Apply similar methods to other L-functions
 
@@ -147,4 +147,4 @@ I'm interested in working with researchers who might help:
 
 ---
 
-**Motto: Good mathematics requires both boldness in exploration and honesty about limitations.** 🎯 
+**Motto: Good mathematics requires both boldness in exploration and honesty about limitations.** 

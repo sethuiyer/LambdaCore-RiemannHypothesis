@@ -13,7 +13,7 @@ If you **can't always do this**, your puzzle breaks down—it's fundamentally in
 
 ---
 
-# 🖥️ **Step 1: Math, simplified**
+# **Step 1: Math, simplified**
 
 Now, let's briefly peek behind the curtain at the math that makes this idea precise (don’t worry—we'll stay friendly!):
 
@@ -27,8 +27,8 @@ $$
 * **$1/\sqrt{p}$**: The strength of each spike (decreasing as primes get bigger).
 * **$\epsilon(p)$**: A sign, depending on whether $p$ leaves remainder 1 or 3 when divided by 4:
 
-  * $+1$ for primes like $5, 13, 17, \dots$ (calm, stabilizing).
-  * $-1$ for primes like $3, 7, 11, \dots$ (chaotic, tension-inducing).
+ * $+1$ for primes like $5, 13, 17, \dots$ (calm, stabilizing).
+ * $-1$ for primes like $3, 7, 11, \dots$ (chaotic, tension-inducing).
 
 Together, these spikes build a special type of mathematical landscape—a puzzle of infinite complexity.
 
@@ -74,21 +74,21 @@ Thus, proving **Global Cohomological Vanishing** would instantly prove the **Rie
 
 ---
 
-# ⚙️ **Step 4: Why is this so hard?**
+# **Step 4: Why is this so hard?**
 
 It sounds simple: just patch everything locally, and you get global perfection. But here’s why it's deeply challenging mathematically:
 
 * **Infinite complexity:**
-  You're working with infinitely many primes, and their influences add up in complicated ways. The small spikes you use to fix local problems become infinitely delicate.
+ You're working with infinitely many primes, and their influences add up in complicated ways. The small spikes you use to fix local problems become infinitely delicate.
 
 * **Delicate interactions (δ-spikes):**
-  Each prime adds a "spike" of tension or calmness at a single point. These spikes interact in extremely subtle ways, causing delicate numerical behaviors that traditional tools struggle to handle.
+ Each prime adds a "spike" of tension or calmness at a single point. These spikes interact in extremely subtle ways, causing delicate numerical behaviors that traditional tools struggle to handle.
 
 * **Diverging sums:**
-  The strengths of these spikes (given by $1/\sqrt{p}$) create sums that slowly diverge. Handling these divergent sums rigorously demands extremely careful, subtle math called **regularization**.
+ The strengths of these spikes (given by $1/\sqrt{p}$) create sums that slowly diverge. Handling these divergent sums rigorously demands extremely careful, subtle math called **regularization**.
 
 * **Non-smooth glue:**
-  Typically, math is easier when things are smooth or continuous. Here, our patches (the δ-spikes) are sharp and sudden. Standard mathematical techniques stumble because we’re not dealing with smooth puzzle pieces—we’re handling delicate spikes of infinite sharpness.
+ Typically, math is easier when things are smooth or continuous. Here, our patches (the δ-spikes) are sharp and sudden. Standard mathematical techniques stumble because we’re not dealing with smooth puzzle pieces—we’re handling delicate spikes of infinite sharpness.
 
 This is why mathematicians find this problem so tough:
 The math required to prove that local "patching" always succeeds (that $H^1=0$) pushes current mathematics to its absolute limit.
@@ -100,39 +100,39 @@ The math required to prove that local "patching" always succeeds (that $H^1=0$) 
 This isn't just about solving a famous math problem:
 
 * **Physics and quantum theory:**
-  The mathematics mirrors how quantum systems behave, where local quantum effects combine globally into coherent patterns.
+ The mathematics mirrors how quantum systems behave, where local quantum effects combine globally into coherent patterns.
 
 * **Information and computation:**
-  It gives insights into error-correcting codes, coherence of information systems, and how complex software can maintain consistency at scale.
+ It gives insights into error-correcting codes, coherence of information systems, and how complex software can maintain consistency at scale.
 
 * **Deeper understanding of numbers:**
-  Proving RH this way would show why primes and their mysterious zeros are not accidents but natural outcomes of global coherence principles.
+ Proving RH this way would show why primes and their mysterious zeros are not accidents but natural outcomes of global coherence principles.
 
 In short:
 If you can prove the "Patch-to-Perfection" (global cohomological vanishing) law, you don't just solve a famous puzzle—you understand why the puzzle is solvable in the first place.
 
 ---
 
-🎯 **Quick Summary (TL;DR)**
+ **Quick Summary (TL;DR)**
 
 * **"Patch-to-Perfection":**
-  Local mismatches can always be patched → Global coherence guaranteed.
+ Local mismatches can always be patched → Global coherence guaranteed.
 
 * **Math:**
-  This idea translates to $H^1 = 0$, a precise cohomological condition.
+ This idea translates to $H^1 = 0$, a precise cohomological condition.
 
 * **Link to RH:**
-  Proving $H^1=0$ shows that Riemann zeros must lie on the critical line.
+ Proving $H^1=0$ shows that Riemann zeros must lie on the critical line.
 
 * **Why Hard?**
-  Infinite complexity, subtle spikes, divergent sums, and non-smooth behaviors.
+ Infinite complexity, subtle spikes, divergent sums, and non-smooth behaviors.
 
 * **Why Important?**
-  Deep connections to physics, computing, and fundamental number theory.
+ Deep connections to physics, computing, and fundamental number theory.
 
 This beautiful dance between local and global coherence is the hidden heart of the Riemann Hypothesis—and one of mathematics’ greatest open challenges.
 
-🎉 **And that's why this is fascinating!**
+ **And that's why this is fascinating!**
 
 
 > ## 🧮 **Λ-Core Spectral Cohomology Program: A Meta-Theory Blueprint**
@@ -145,24 +145,24 @@ This beautiful dance between local and global coherence is the hidden heart of t
 > ### 1. **Key Definitions**
 >
 > * **Logarithmic Space ($Y$):**
->   The real line $Y = \mathbb{R}$, with coordinate $y = \log x$, encoding multiplicative scaling as translation.
+> The real line $Y = \mathbb{R}$, with coordinate $y = \log x$, encoding multiplicative scaling as translation.
 >
 > * **Prime-Induced Sheaf ($\mathscr{F}$):**
->   Assigns, to each open interval $U \subset Y$, the space of sections:
+> Assigns, to each open interval $U \subset Y$, the space of sections:
 >
->   $$
->   \Gamma(U, \mathscr{F}) = \Big\{ f : U \rightarrow \mathbb{C} \;\Big|\; f(y) = \sum_{p \leq e^{y}} \epsilon(p)\,p^{-1/2} \Big\}
->   $$
+> $$
+> \Gamma(U, \mathscr{F}) = \Big\{ f : U \rightarrow \mathbb{C} \;\Big|\; f(y) = \sum_{p \leq e^{y}} \epsilon(p)\,p^{-1/2} \Big\}
+> $$
 >
->   where $\epsilon(p) = +1$ for $p \equiv 1 \pmod{4}$ (Euclidean), $-1$ for $p \equiv 3 \pmod{4}$ (Hyperbolic).
+> where $\epsilon(p) = +1$ for $p \equiv 1 \pmod{4}$ (Euclidean), $-1$ for $p \equiv 3 \pmod{4}$ (Hyperbolic).
 >
 > * **Spectral Operator ($H$):**
 >
->   $$
->   H = -\frac{1}{2}\frac{d^2}{dy^2} + V(y)
->   $$
+> $$
+> H = -\frac{1}{2}\frac{d^2}{dy^2} + V(y)
+> $$
 >
->   where $V(y) = \sum_{p} \epsilon(p) p^{-1/2} \delta(y-\log p)$.
+> where $V(y) = \sum_{p} \epsilon(p) p^{-1/2} \delta(y-\log p)$.
 >
 > ---
 >
@@ -190,18 +190,18 @@ This beautiful dance between local and global coherence is the hidden heart of t
 >
 > * **A. Operator Theory:**
 >
->   * Prove self-adjointness and spectral completeness for $H$ via quadratic form methods and regularization ($p^{-1/2-\epsilon}$, $\epsilon \to 0$).
+> * Prove self-adjointness and spectral completeness for $H$ via quadratic form methods and regularization ($p^{-1/2-\epsilon}$, $\epsilon \to 0$).
 > * **B. Sheaf/Cohomology:**
 >
->   * Explicit Čech cohomology computations on the prime sheaf.
->   * Analyze patch overlaps for δ-function potentials and show $H^1=0$.
+> * Explicit Čech cohomology computations on the prime sheaf.
+> * Analyze patch overlaps for δ-function potentials and show $H^1=0$.
 > * **C. Spectral Theory:**
 >
->   * Connect vanishing of $H^1$ to the spectral realization of Riemann zeros.
+> * Connect vanishing of $H^1$ to the spectral realization of Riemann zeros.
 > * **D. Numerical/Computational:**
 >
->   * Simulate finite-prime truncations to gather empirical evidence.
->   * Study convergence of computed eigenvalues to known zeros as grid/basis is refined.
+> * Simulate finite-prime truncations to gather empirical evidence.
+> * Study convergence of computed eigenvalues to known zeros as grid/basis is refined.
 >
 > ---
 >

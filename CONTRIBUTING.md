@@ -49,12 +49,12 @@ Thank you for your interest in contributing to the Λ-Core Duality framework! Th
 ### Repository Structure
 ```
 LambdaCore-RiemannHypothesis/
-├── src/core/           # Core mathematical implementations
-├── src/simulations/    # Validation simulations
-├── src/analysis/       # Result analysis tools
-├── docs/              # Documentation and papers
-├── images/            # Generated plots and figures
-└── results/           # Output data and analysis
+├── src/core/ # Core mathematical implementations
+├── src/simulations/ # Validation simulations
+├── src/analysis/ # Result analysis tools
+├── docs/ # Documentation and papers
+├── images/ # Generated plots and figures
+└── results/ # Output data and analysis
 ```
 
 ### Coding Standards
@@ -75,34 +75,34 @@ LambdaCore-RiemannHypothesis/
 #### Example Function Template
 ```python
 def compute_eigenvalues(hamiltonian: np.ndarray, 
-                       num_eigenvalues: int = 15,
-                       method: str = 'arpack') -> np.ndarray:
-    """
-    Compute the lowest eigenvalues of the Λ-Core Hamiltonian.
-    
-    Solves the generalized eigenvalue problem:
-        H ψ = E ψ
-    
-    where H = T + V is the quantum Hamiltonian with kinetic operator T
-    and prime potential V.
-    
-    Args:
-        hamiltonian: The discretized Hamiltonian matrix (N×N)
-        num_eigenvalues: Number of lowest eigenvalues to compute
-        method: Eigenvalue solver ('arpack', 'lobpcg', 'dense')
-        
-    Returns:
-        Sorted array of eigenvalues E_n corresponding to approximate
-        Riemann zero heights t_n via t_n ≈ √E_n
-        
-    References:
-        [1] Kato, T. (1995). Perturbation Theory for Linear Operators.
-        [2] Lehoucq, R. B. (1998). ARPACK Users' Guide.
-        
-    Complexity:
-        O(N²) for dense methods, O(k·N) for sparse methods where k << N
-    """
-    # Implementation here
+ num_eigenvalues: int = 15,
+ method: str = 'arpack') -> np.ndarray:
+ """
+ Compute the lowest eigenvalues of the Λ-Core Hamiltonian.
+ 
+ Solves the generalized eigenvalue problem:
+ H ψ = E ψ
+ 
+ where H = T + V is the quantum Hamiltonian with kinetic operator T
+ and prime potential V.
+ 
+ Args:
+ hamiltonian: The discretized Hamiltonian matrix (N×N)
+ num_eigenvalues: Number of lowest eigenvalues to compute
+ method: Eigenvalue solver ('arpack', 'lobpcg', 'dense')
+ 
+ Returns:
+ Sorted array of eigenvalues E_n corresponding to approximate
+ Riemann zero heights t_n via t_n ≈ √E_n
+ 
+ References:
+ [1] Kato, T. (1995). Perturbation Theory for Linear Operators.
+ [2] Lehoucq, R. B. (1998). ARPACK Users' Guide.
+ 
+ Complexity:
+ O(N²) for dense methods, O(k·N) for sparse methods where k << N
+ """
+ # Implementation here
 ```
 
 ### Submission Process

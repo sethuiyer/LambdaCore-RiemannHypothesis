@@ -2,22 +2,22 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 def partition_primes(limit=10000):
-    """Partitions primes up to a limit into 4n+1 and 4n+3 classes."""
-    primes = []
-    is_prime = [True] * (limit + 1)
-    is_prime[0] = is_prime[1] = False
-    for p in range(2, int(np.sqrt(limit)) + 1):
-        if is_prime[p]:
-            for i in range(p * p, limit + 1, p):
-                is_prime[i] = False
-    for p in range(3, limit + 1):  # We exclude 2 for this classification
-        if is_prime[p]:
-            primes.append(p)
-            
-    class_4n1 = [p for p in primes if p % 4 == 1]
-    class_4n3 = [p for p in primes if p % 4 == 3]
-    
-    return class_4n1, class_4n3
+ """Partitions primes up to a limit into 4n+1 and 4n+3 classes."""
+ primes = []
+ is_prime = [True] * (limit + 1)
+ is_prime[0] = is_prime[1] = False
+ for p in range(2, int(np.sqrt(limit)) + 1):
+ if is_prime[p]:
+ for i in range(p * p, limit + 1, p):
+ is_prime[i] = False
+ for p in range(3, limit + 1): # We exclude 2 for this classification
+ if is_prime[p]:
+ primes.append(p)
+ 
+ class_4n1 = [p for p in primes if p % 4 == 1]
+ class_4n3 = [p for p in primes if p % 4 == 3]
+ 
+ return class_4n1, class_4n3
 
 print("=== Simulation 2: Prime Class Partitioning ===")
 primes_4n1, primes_4n3 = partition_primes()

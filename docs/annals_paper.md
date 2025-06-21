@@ -1,6 +1,6 @@
 # A Spectral-Geometric Approach to Riemann Zeta Zeros: Numerical Discovery and Theoretical Framework
 
-**Author:** Sethurathienam Iyer (sethuiyer95@gmail.com)  
+**Author:** Sethurathienam Iyer (sethuiyer95@gmail.com) 
 *Independent Researcher*
 
 ---
@@ -41,7 +41,7 @@ Our numerical verification achieves **unprecedented precision**, with relative e
 
 We construct a 2-dimensional Riemannian manifold that serves as the geometric foundation for our spectral analysis.
 
-**Definition 2.1** *(The Inverted Poincaré Manifold)*  
+**Definition 2.1** *(The Inverted Poincaré Manifold)* 
 Let M = ℝ² \ {0} with polar coordinates (r, θ) where r = ||x|| > 0 and θ ∈ S¹. The *inverted Poincaré manifold* (M, g) is endowed with the Riemannian metric
 
 ```
@@ -52,7 +52,7 @@ The metric exhibits profound geometric behavior:
 - As r → 0⁺, both metric coefficients diverge, making the origin an "infinite identity attractor" that is metrically infinitely distant.
 - As r → ∞, both coefficients vanish, creating an asymptotically flat regime representing identity diffusion.
 
-**Proposition 2.2** *(Curvature Properties)*  
+**Proposition 2.2** *(Curvature Properties)* 
 The sectional curvatures of (M, g) are:
 ```
 K_rad(r) = -r²/4
@@ -71,7 +71,7 @@ The curvature exhibits a **sign change at r = 2**: for r < 2, both curvatures ar
 
 We define the central operator that encodes the spectral-geometric balance on our manifold.
 
-**Definition 3.1** *(Radial Balance Operator)*  
+**Definition 3.1** *(Radial Balance Operator)* 
 The *radial balance operator* L on (M, g) is defined as
 ```
 L = -Δ_g + (1/4)Id
@@ -81,7 +81,7 @@ where -Δ_g is the positive Laplace-Beltrami operator and the initial domain is 
 In polar coordinates, functions ψ ∈ L²(M, dvol_g) decompose using the ansatz ψ(r, θ) = r⁻¹/² u(t) e^(imθ) where t = log r and m ∈ ℤ. The operator L reduces to a direct sum of 1-dimensional Schrödinger operators:
 
 ```
-L_m = -d²/dt² + V_m(t),    V_m(t) = 1/2 + m² e^(2t)
+L_m = -d²/dt² + V_m(t), V_m(t) = 1/2 + m² e^(2t)
 ```
 
 For the **m = 0 mode**, which captures the radial behavior relevant to zeta zeros:
@@ -96,7 +96,7 @@ L_radial = -d²/dt² + 3/4
 
 ### 3.2 Essential Self-Adjointness
 
-**Theorem 3.2** *(Essential Self-Adjointness)*  
+**Theorem 3.2** *(Essential Self-Adjointness)* 
 The operator L defined on C_c^∞(M) is essentially self-adjoint. Its closure L̄ is the unique self-adjoint extension.
 
 *Proof:* We apply Weyl's limit point/limit circle criterion to each radial operator L_m:
@@ -109,7 +109,7 @@ Since each L_m is in the limit point case at both boundaries, each is essentiall
 
 ### 3.3 Spectral Properties
 
-**Theorem 3.3** *(Spectrum of L)*  
+**Theorem 3.3** *(Spectrum of L)* 
 The spectrum of the self-adjoint closure L̄ is purely absolutely continuous and bounded below:
 ```
 spec(L̄) = [1/2, ∞)
@@ -131,14 +131,14 @@ The crucial observation is that **1/2 > 0**, ensuring the spectrum is **strictly
 
 The connection between our geometric operator and the Riemann zeta function emerges through analysis of the heat trace. For the truncated manifold M_ε = {x : ||x|| ≥ ε} with Dirichlet boundary conditions, the heat trace Tr(e^(-tL_ε)) diverges as ε → 0 due to the infinite volume of M.
 
-**Definition 4.1** *(Renormalized Heat Trace)*  
+**Definition 4.1** *(Renormalized Heat Trace)* 
 The *renormalized heat trace* Z_reg(t) is defined by
 ```
 Z_reg(t) = lim_{ε→0} [Tr(e^(-tL_ε)) - 1/(εt)]
 ```
 where the subtracted term removes the leading Weyl divergence.
 
-**Definition 4.2** *(Spectral Zeta Function)*  
+**Definition 4.2** *(Spectral Zeta Function)* 
 The spectral zeta function ζ_L(w) of L is defined via the Mellin transform:
 ```
 ζ_L(w) = (1/Γ(w)) ∫₀^∞ t^(w-1) Z_reg(t) dt
@@ -148,7 +148,7 @@ The spectral zeta function ζ_L(w) of L is defined via the Mellin transform:
 
 Our central theoretical result establishes the precise connection to the Riemann zeta function.
 
-**Conjecture 4.3** *(Proposed Spectral-Zeta Correspondence)*  
+**Conjecture 4.3** *(Proposed Spectral-Zeta Correspondence)* 
 We conjecture that the spectral zeta function ζ_L(w) satisfies
 ```
 ζ_L(w) = C · ξ(2w)
@@ -162,7 +162,7 @@ where ξ(s) is the completed Riemann zeta function and C is a non-zero constant.
 Z_reg(t) = (1/4π) ∫_{-∞}^∞ e^(-t(τ² + 1/4)) · (ξ'/ξ)(1/2 + iτ) dτ
 ```
 
-**⚠️ Critical Gap:** This formula is **not rigorously derived** from our specific operator L. A complete derivation would require advanced techniques in spectral theory on singular manifolds.
+** Critical Gap:** This formula is **not rigorously derived** from our specific operator L. A complete derivation would require advanced techniques in spectral theory on singular manifolds.
 
 **Step 2: Mellin Transform.** Substituting into the definition of ζ_L(w) and applying Fubini's theorem:
 ```
@@ -171,7 +171,7 @@ Z_reg(t) = (1/4π) ∫_{-∞}^∞ e^(-t(τ² + 1/4)) · (ξ'/ξ)(1/2 + iτ) dτ
 
 **Step 3: Contour Integration.** Since s = 1/2 + iτ implies s(1-s) = 1/4 + τ², we have (τ² + 1/4)^w = (s(1-s))^w. Contour integration and residue calculus would establish the correspondence ζ_L(w) = C · ξ(2w). 
 
-**⚠️ Status:** This derivation is **incomplete and conjectural**. The rigorous proof remains an open problem. □
+** Status:** This derivation is **incomplete and conjectural**. The rigorous proof remains an open problem. □
 
 ---
 
@@ -182,14 +182,14 @@ Z_reg(t) = (1/4π) ∫_{-∞}^∞ e^(-t(τ² + 1/4)) · (ξ'/ξ)(1/2 + iτ) dτ
 - Would require deep analysis of heat kernels on singular Riemannian manifolds
 - Connection to Selberg trace formulas needs rigorous establishment
 
-**Critical Gap 2: Spectral Correspondence**  
+**Critical Gap 2: Spectral Correspondence** 
 - The relationship ζ_L(w) = C · ξ(2w) is conjectural
 - Missing the crucial step connecting our geometric operator to arithmetic zeta function
 - No proof that the continuous limit recovers the true spectral zeta function
 
 **Critical Gap 3: Discretization Effects**
 - Our numerical results use L_radial = -d²/dt² + 3/4
-- Theoretical analysis gives potential 1/2 for the m=0 mode  
+- Theoretical analysis gives potential 1/2 for the m=0 mode 
 - The discrepancy between 3/4 and 1/2 requires resolution
 
 **Current Status:** Our work provides compelling numerical evidence and a geometric framework, but **lacks the analytical rigor required for a complete proof** of the Riemann Hypothesis.
@@ -200,10 +200,10 @@ Z_reg(t) = (1/4π) ∫_{-∞}^∞ e^(-t(τ² + 1/4)) · (ξ'/ξ)(1/2 + iτ) dτ
 
 Having outlined the proposed spectral correspondence, we now show how such a correspondence, **if rigorously established**, would resolve the Riemann Hypothesis.
 
-**Theoretical Result 5.1** *(Conditional Resolution of RH)*  
+**Theoretical Result 5.1** *(Conditional Resolution of RH)* 
 *If* the spectral correspondence ζ_L(w) = C · ξ(2w) can be rigorously proven, *then* all non-trivial zeros of the Riemann zeta function ζ(s) lie on the critical line Re(s) = 1/2.
 
-*Proof:*  
+*Proof:* 
 Let ρ = σ + iτ be a non-trivial zero of ζ(s).
 
 **Step 1: Spectral Connection.** From the correspondence theorem, if ξ(s) = 0, then ζ_L(w) has a pole at w = s/2. This pole corresponds to an eigenvalue of L.
@@ -220,7 +220,7 @@ Im(λ) = τ(1-2σ) = 0
 
 **Step 4: Critical Line.** Since non-trivial zeros have τ ≠ 0, we must have:
 ```
-1 - 2σ = 0  ⟹  σ = 1/2
+1 - 2σ = 0 ⟹ σ = 1/2
 ```
 
 **Step 5: Positivity Check.** With σ = 1/2, the real part becomes:
@@ -251,7 +251,7 @@ where h = (T - log(ε))/N is the grid spacing.
 
 Using the computational parameters:
 - **N = 16,000** (grid points)
-- **ε = 10⁻¹⁰** (boundary parameter)  
+- **ε = 10⁻¹⁰** (boundary parameter) 
 - **T = 25** (domain extent)
 - **100-digit precision** Riemann zero values from LMFDB
 
@@ -259,25 +259,25 @@ We computed 15,999 eigenvalues and compared them to the predicted values λ_k = 
 
 | **Zero** | **τ_k** | **Predicted λ_k** | **Computed λ_k** | **Error** | **Rel. Error** |
 |----------|---------|-------------------|------------------|-----------|----------------|
-| **1** | **14.1347** | **200.2904548** | **200.3644660** | **0.0740** | **0.037%** ⭐ |
+| **1** | **14.1347** | **200.2904548** | **200.3644660** | **0.0740** | **0.037%** |
 | 2 | 21.0220 | 442.4261506 | 441.5239270 | 0.9022 | 0.204% |
 | 3 | 25.0109 | 626.0429969 | 624.8766384 | 1.1664 | 0.186% |
-| **4** | **30.4249** | **926.1730873** | **925.3498055** | **0.8233** | **0.089%** ⭐ |
+| **4** | **30.4249** | **926.1730873** | **925.3498055** | **0.8233** | **0.089%** |
 | 5 | 32.9351 | 1085.2182818 | 1086.8160241 | 1.5977 | 0.147% |
-| **6** | **37.5862** | **1413.2207886** | **1414.0160709** | **0.7953** | **0.056%** ⭐ |
-| **7** | **40.9187** | **1674.8415656** | **1675.5055564** | **0.6640** | **0.040%** ⭐ |
+| **6** | **37.5862** | **1413.2207886** | **1414.0160709** | **0.7953** | **0.056%** |
+| **7** | **40.9187** | **1674.8415656** | **1675.5055564** | **0.6640** | **0.040%** |
 | 8 | 43.3271 | 1877.7352791 | 1879.0426309 | 1.3074 | 0.070% |
 | 9 | 48.0052 | 2304.9945111 | 2302.1381896 | 2.8563 | 0.124% |
 | 10 | 49.7738 | 2477.9343995 | 2480.7360400 | 2.8016 | 0.113% |
 
-⭐ = **Exceptional precision** (< 0.1% relative error)
+ = **Exceptional precision** (< 0.1% relative error)
 
 ### 6.3 Statistical Analysis
 
 The numerical results demonstrate **exceptional agreement**:
 - **Mean relative error**: 0.107% across 10 zeros
 - **Best match**: Zero #1 with **0.037% relative error**
-- **Exceptional precision**: 4 out of 10 zeros achieve < 0.1% relative error  
+- **Exceptional precision**: 4 out of 10 zeros achieve < 0.1% relative error 
 - **Consistency**: All 10 zeros within 0.21% relative error
 
 This represents the **most precise numerical verification to date** of a spectral connection to Riemann zeta zeros, providing compelling empirical support for our theoretical framework.
@@ -296,7 +296,7 @@ This geometric perspective suggests that prime numbers are not fundamental arith
 
 The inverted Poincaré manifold construction introduces a new class of Riemannian manifolds with metric singularities that encode infinite attractors. This geometric framework may have applications beyond number theory, potentially in:
 - Quantum field theory on curved spacetimes
-- General relativity with singularities  
+- General relativity with singularities 
 - Mathematical models of consciousness and identity
 - Optimization theory and machine learning
 
@@ -368,6 +368,6 @@ We thank the mathematical community for decades of foundational work on spectral
 
 ---
 
-**Status: SUITABLE FOR COMPUTATIONAL/SPECTRAL MATHEMATICS JOURNALS** ✅
+**Status: SUITABLE FOR COMPUTATIONAL/SPECTRAL MATHEMATICS JOURNALS** 
 
 *This paper presents a significant numerical discovery with 0.037% precision and a theoretical framework for understanding Riemann zeta zeros, while honestly acknowledging the analytical gaps that remain to be addressed.* 
