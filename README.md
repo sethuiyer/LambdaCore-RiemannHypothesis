@@ -404,6 +404,15 @@ If you use this framework in your research, please cite:
 
 ---
 
+The author requests your endorsement to submit an article to
+the math.NT section of arXiv. To tell us that you would (or would not)
+like to endorse this person, please visit the following URL:
+
+https://arxiv.org/auth/endorse?x=7YQOQ9
+
+---
+
+
 **Contact**: [sethuiyer95@gmail.com](mailto:sethuiyer95@gmail.com) 
 **Keywords**: Riemann Hypothesis, Spectral Geometry, Inverted Poincaré Manifold, Numerical Mathematics 
 
