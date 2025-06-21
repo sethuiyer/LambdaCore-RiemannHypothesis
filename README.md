@@ -12,7 +12,7 @@
 
 **This research does NOT claim to provide a complete proof of the Riemann Hypothesis.** 
 
-While the framework shows remarkable numerical precision (0.037% relative error), key analytical steps remain unproven. This work presents compelling numerical evidence and a geometric framework for future theoretical development.
+While the framework shows remarkable numerical precision (0.0103% relative error at N=32,000), key analytical steps remain unproven. This work presents compelling numerical evidence and a geometric framework for future theoretical development.
 
 ## **Dual Research Approaches**
 
@@ -59,7 +59,7 @@ Cross-References & Analysis
 | **Philosophy** | Physical: Primes as competing forces | Geometric: Manifold curvature dynamics |
 | **Mathematics** | Quantum mechanics, prime theory | Differential geometry, spectral theory |
 | **Operator** | H = -i d/dy + V_primes(y) | L = -Δ_g + (1/4)Id |
-| **Precision** | ~87-90% relative error | **0.037-0.21% relative error** |
+| **Precision** | ~87-90% relative error | **0.0103-0.29% relative error** |
 | **Strengths** | Rich physical interpretation | Ultra-high numerical precision |
 | **Focus** | Theoretical understanding | Computational validation |
 
@@ -79,10 +79,10 @@ where τ_k are the imaginary parts of Riemann zeta zeros:
 
 | **Zero** | **τ_k** | **Predicted λ_k** | **Computed λ_k** | **Relative Error** |
 |----------|---------|-------------------|------------------|-------------------|
-| **#1** | **14.1347** | **200.2904548** | **200.3644660** | **0.037%** |
-| #4 | 30.4249 | 926.1730873 | 925.3498055 | **0.089%** |
-| #6 | 37.5862 | 1413.2207886 | 1414.0160709 | **0.056%** |
-| #7 | 40.9187 | 1674.8415656 | 1675.5055564 | **0.040%** |
+| **#8** | **43.3271** | **1877.7352791** | **1877.9283282** | **0.0103%** |
+| **#10** | **49.7738** | **2477.9343995** | **2477.6337072** | **0.0121%** |
+| **#3** | **25.0109** | **626.0429969** | **626.1861202** | **0.0229%** |
+| #2 | 21.0220 | 442.4261506 | 442.1763557 | **0.0565%** |
 
 **Way 1** provides rich theoretical framework connecting prime number theory to quantum mechanics through the Λ-Core duality, offering physical insights into the nature of prime distributions and zeta zeros.
 
@@ -129,7 +129,8 @@ docs/dual_spectral_report.tex # LaTeX source (ready for submission)
 ### **Core Computational Scripts**
 ```
 src/sam.py # Way 2: Original discovery (N=1,000)
-src/ultra_precision.py # Way 2: Ultra-precision (N=16,000, 0.037% error) 
+src/ultra_precision.py # Way 2: Ultra-precision (N=16,000, 0.037% error)
+src/ultra_precision_32k.py # Way 2: Maximum precision (N=32,000, 0.0103% error)
 src/rigorous_verification.py # Way 2: Convergence analysis
 src/generate_plots.py # Generate all 4 publication-quality figures
 ```
@@ -146,6 +147,7 @@ docs/convergence_analysis.png # Computational performance study
 ```
 docs/MONOGRAPH.md # Way 2: Complete geometric framework
 docs/ARTICLE.md # Way 1: Complete quantum framework
+docs/N32000_RESULTS.md # N=32,000 maximum precision results
 docs/RESEARCH_DISCLAIMER.md # Honest gaps assessment
 docs/FINAL_RESULTS_ANNALS.md # Ultra-precision summary
 docs/WRITEUP.md # Optimization applications
@@ -211,6 +213,7 @@ LICENSE # MIT License
 **Expected Runtime:** 
 - `sam.py`: ~30 seconds
 - `ultra_precision.py`: ~3-5 minutes 
+- `ultra_precision_32k.py`: ~28-30 minutes
 - `generate_plots.py`: ~30 seconds
 - Full Way 1 suite: ~2-3 minutes
 
@@ -245,10 +248,11 @@ python simulations/simulation_4_hamiltonian_eigenvalues.py # Main eigenvalue com
 cd src
 python sam.py # Original discovery (N=1000)
 python ultra_precision.py # Ultra-high precision (N=16,000)
+python ultra_precision_32k.py # Maximum precision (N=32,000, ~30 min)
 python rigorous_verification.py # Convergence analysis
 ```
 
-The ultra-precision script computes 15,999 eigenvalues with N=16,000 grid points and compares them to the first 10 Riemann zeta zeros.
+The ultra-precision scripts compute eigenvalues with grid points up to N=32,000 and compare them to the first 10 Riemann zeta zeros. The N=32,000 computation takes approximately 30 minutes but achieves 0.0103% precision.
 
 ## Theoretical Foundations
 
@@ -298,16 +302,17 @@ L = -Δ_g + (1/4)Id
 ### **Ultra-High Precision Numerical Discovery**
 
 **Computational Parameters:**
-- **N = 16,000** (15,999 × 15,999 tridiagonal matrix)
-- **ε = 10⁻¹⁰** (boundary parameter)
+- **N = 32,000** (31,999 × 31,999 tridiagonal matrix)
+- **ε = 10⁻¹²** (boundary parameter)
 - **T = 25** (domain extent)
 - **100-digit precision** Riemann zero values
+- **Computation time**: 28.2 minutes
 
 **Statistical Excellence:**
-- **Mean relative error**: 0.107% across 10 zeros
-- **Best match**: 0.037% relative error for first zero
-- **Consistency**: All zeros within 0.21% relative error
-- **Exceptional precision**: 4 out of 10 zeros < 0.1% error
+- **Mean relative error**: 0.090% across 10 zeros
+- **Best match**: 0.0103% relative error for zero #8
+- **Consistency**: All zeros within 0.29% relative error
+- **Exceptional precision**: 6 out of 10 zeros < 0.1% error
 
 ### Mathematical Framework
 
