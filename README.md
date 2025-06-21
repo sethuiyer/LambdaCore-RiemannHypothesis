@@ -116,39 +116,103 @@ where τ_k are the imaginary parts of Riemann zeta zeros:
 - **Way 2**: Exceptional numerical precision, geometric framework established  
 - **Combined**: Compelling evidence from two independent mathematical approaches
 
-## Repository Structure
+## 📁 Repository Structure & File Guide 
 
+**Total: 50 files across 7 directories** - Here's what you'll find when you explore:
+
+### 📊 **🎯 START HERE: Main Research Output**
 ```
-LambdaCore-RiemannHypothesis/
-├── docs/
-│   ├── ARTICLE.md                    # Way 1: Quantum operator theoretical framework
-│   ├── MONOGRAPH.md                  # Way 2: Inverted Poincaré manifold framework
-│   ├── annals_paper.md               # Combined research paper (honest version)
-│   ├── annals_of_mathematics_paper.tex # LaTeX version
-│   ├── RESEARCH_DISCLAIMER.md        # Critical gaps and honest assessment
-│   ├── FINAL_RESULTS_ANNALS.md      # Ultra-precision results summary
-│   ├── WRITEUP.md                    # Optimization applications
-│   └── publication_summary.md        # Technical analysis summary
-├── src/
-│   ├── Way 1: Quantum Operator Framework
-│   │   ├── core/                     # Prime partitioning & quantum operators
-│   │   │   ├── prime_operators.py    # Prime partitioning implementation
-│   │   │   ├── spectral_solver.py    # Quantum Hamiltonian solver
-│   │   │   └── zeta_functions.py     # Zeta function computations
-│   │   ├── simulations/              # Computational validations
-│   │   │   ├── simulation_1_zeta_comparison.py
-│   │   │   ├── simulation_2_prime_partitions.py
-│   │   │   ├── simulation_3_prime_potential.py
-│   │   │   └── simulation_4_hamiltonian_eigenvalues.py
-│   │   └── analysis/                 # Analysis and summary tools
-│   ├── Way 2: Inverted Poincaré Manifold
-│   │   ├── sam.py                    # Original geometric discovery (N=1000)
-│   │   ├── ultra_precision.py        # Ultra-high precision (N=16,000)
-│   │   └── rigorous_verification.py  # Systematic convergence analysis
-├── images/                           # Visualization results
-├── requirements.txt                  # Python dependencies
-└── LICENSE                          # MIT License
+docs/dual_spectral_report.pdf          # 16-page professional research report
+docs/dual_spectral_report.tex          # LaTeX source (ready for submission)
 ```
+
+### 🔬 **Core Computational Scripts**
+```
+src/sam.py                             # Way 2: Original discovery (N=1,000)
+src/ultra_precision.py                 # Way 2: Ultra-precision (N=16,000, 0.037% error) ⭐
+src/rigorous_verification.py           # Way 2: Convergence analysis
+src/generate_plots.py                  # Generate all 4 publication-quality figures
+```
+
+### 📈 **Publication-Quality Visualizations**
+```
+docs/dual_framework_overview.png       # Complete comparison of both approaches  
+docs/spectral_correspondence.png       # Ultra-precision results showcase
+docs/precision_comparison.png          # Grid resolution impact analysis
+docs/convergence_analysis.png          # Computational performance study
+```
+
+### 📚 **Theoretical Documentation**
+```
+docs/MONOGRAPH.md                      # Way 2: Complete geometric framework
+docs/ARTICLE.md                        # Way 1: Complete quantum framework
+docs/RESEARCH_DISCLAIMER.md            # Honest gaps assessment
+docs/FINAL_RESULTS_ANNALS.md          # Ultra-precision summary
+docs/WRITEUP.md                        # Optimization applications
+```
+
+### 🧬 **Way 1: Quantum Operator Framework**
+```
+src/core/
+├── prime_operators.py                 # Prime partitioning (Euclidean/Hyperbolic)
+├── spectral_solver.py                 # Quantum Hamiltonian solver
+└── zeta_functions.py                  # Zeta function utilities
+src/simulations/
+├── simulation_1_zeta_comparison.py    # Basic zeta correspondence test
+├── simulation_2_prime_partitions.py   # Prime force visualization
+├── simulation_3_prime_potential.py    # Potential function analysis
+├── simulation_4_hamiltonian_eigenvalues.py # Main eigenvalue computation
+└── simulation_4_fixed.py              # Debugging version
+src/analysis/
+├── run_all_simulations.py            # Execute all Way 1 experiments
+├── analysis_summary.py               # Results compilation
+└── debug_eigenvalues.py              # Troubleshooting tools
+```
+
+### 🌍 **Way 2: Geometric Framework Files**
+```
+src/sam.py                            # Inverted Poincaré manifold (original)
+src/ultra_precision.py                # N=16,000 breakthrough computation
+src/rigorous_verification.py          # Systematic validation framework
+```
+
+### 🎨 **Historical & Supporting Files**
+```
+images/
+├── prime_partitions.png              # Early prime visualization
+├── prime_potential.png               # Potential function plots  
+├── riemann_zeros_comparison.png      # Comparison analysis
+└── riemann_zeros_comparison_fixed.png # Corrected version
+docs/annals_*.pdf                     # Legacy report versions
+docs/publication_summary.md           # Technical analysis
+PATCH2PERFECTION.md                   # Development history
+CONTRIBUTING.md                       # Contribution guidelines
+requirements.txt                      # Python dependencies
+LICENSE                              # MIT License
+```
+
+### 🎯 **User Journey - What to Explore First:**
+
+**🔥 New Users:**
+1. **`docs/dual_spectral_report.pdf`** - Complete research story
+2. **`src/ultra_precision.py`** - Run the 0.037% precision experiment
+3. **`src/generate_plots.py`** - Generate beautiful visualizations
+
+**👨‍💻 Developers:**
+1. **`src/core/`** - Understanding Way 1 implementation  
+2. **`src/sam.py`** - Understanding Way 2 implementation
+3. **`requirements.txt`** - Setup your environment
+
+**📊 Researchers:**
+1. **`docs/MONOGRAPH.md`** - Deep geometric theory
+2. **`docs/ARTICLE.md`** - Deep quantum theory  
+3. **`docs/RESEARCH_DISCLAIMER.md`** - Honest gap analysis
+
+**Expected Runtime:** 
+- `sam.py`: ~30 seconds
+- `ultra_precision.py`: ~3-5 minutes ⭐
+- `generate_plots.py`: ~30 seconds
+- Full Way 1 suite: ~2-3 minutes
 
 ## Quick Start
 
