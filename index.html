@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Report: A Spectral Geometric Approach to Riemann Zeta Zeros</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Source+Serif+4:opsz,wght@8..60,400;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Academic Neutrals -->
+    <!-- Application Structure Plan: A top-down, single-page dashboard designed for progressive disclosure. It starts with the most significant finding (the 0.037% error) to hook the user. It then flows into an interactive 'Results Dashboard' where users can visually compare expected vs. computed values and explore the data table. This is followed by sections that explain the 'Geometric Model' and 'Numerical Methodology' using interactive elements to simplify complex concepts. A sticky sidebar allows non-linear navigation. This structure was chosen to make dense, academic content digestible and engaging, guiding the user from the "what" to the "how" and "why," which is more intuitive for exploration than a linear paper format. -->
+    <!-- Visualization & Content Choices: 
+        - Key Finding (Goal: Inform): A large, non-interactive "stat card" for the main 0.037% result. Justification: Immediate impact.
+        - Results Comparison (Goal: Compare): An interactive bar chart (Chart.js) comparing 'Expected' vs. 'Computed' eigenvalues. Interaction: Hovering a bar highlights the corresponding table row, and vice-versa. Justification: Visually superior to a static table for comparing two sets of values.
+        - Data Table (Goal: Organize/Inform): An HTML table with full data. Interaction: Linked with the bar chart. Justification: Provides precise numerical values.
+        - Geometric Model (Goal: Organize): A tabbed component built with HTML/Tailwind/JS to explain the Manifold, Operator, and Conjecture. Justification: Breaks a complex topic into manageable pieces.
+        - Convergence Analysis (Goal: Show Change): An interactive line chart (Chart.js) with a slider. Interaction: User can drag the slider to see how error decreases as grid size (N) increases. Justification: Actively demonstrates the concept of convergence far more effectively than a static image.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        :root {
+            --bg-main: #f8f7f4;
+            --bg-card: #ffffff;
+            --text-primary: #1f2937;
+            --text-secondary: #4b5563;
+            --accent-primary: #2563eb;
+            --accent-secondary: #4f46e5;
+            --accent-success: #16a34a;
+            --border-color: #e5e7eb;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+        }
+        h1, h2, h3 {
+            font-family: 'Source Serif 4', serif;
+            font-weight: 700;
+        }
+        .math-jax {
+            font-family: 'Source Serif 4', serif;
+            font-size: 1.1rem;
+        }
+        .nav-link {
+            transition: all 0.2s ease-in-out;
+            border-left: 3px solid transparent;
+        }
+        .nav-link.active {
+            color: var(--accent-primary);
+            border-left-color: var(--accent-primary);
+            background-color: #f0f3ff;
+        }
+        .nav-link:hover {
+            color: var(--accent-primary);
+            background-color: #f0f3ff;
+        }
+        .stat-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            max-height: 50vh;
+        }
+        .table-row-highlight {
+            background-color: #eff6ff;
+        }
+        .tab-button {
+            transition: all 0.2s ease-in-out;
+        }
+        .tab-button.active {
+            color: var(--accent-primary);
+            border-bottom-color: var(--accent-primary);
+        }
+        /* Custom slider styles */
+        input[type=range] {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            cursor: pointer;
+            outline: none;
+            border-radius: 15px;
+            height: 6px;
+            background: #e5e7eb;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            height: 20px;
+            width: 20px;
+            background-color: var(--accent-primary);
+            border-radius: 50%;
+            border: none;
+            transition: .2s ease-in-out;
+        }
+        input[type=range]::-moz-range-thumb {
+            height: 20px;
+            width: 20px;
+            background-color: var(--accent-primary);
+            border-radius: 50%;
+            border: none;
+            transition: .2s ease-in-out;
+        }
+    </style>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+            }
+        };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+</head>
+<body class="overflow-y-scroll">
+    <div class="min-h-screen lg:flex">
+        <!-- Sidebar Navigation -->
+        <aside class="lg:w-64 lg:flex-shrink-0 lg:h-screen lg:sticky lg:top-0 bg-white border-r border-gray-200">
+            <div class="p-6">
+                <h2 class="text-xl font-semibold text-gray-800">Navigation</h2>
+            </div>
+            <nav class="mt-2" id="navigation">
+                <a href="#introduction" class="nav-link block py-3 px-6 text-gray-600 font-medium">Introduction</a>
+                <a href="#results" class="nav-link block py-3 px-6 text-gray-600 font-medium">Key Results</a>
+                <a href="#model" class="nav-link block py-3 px-6 text-gray-600 font-medium">Geometric Model</a>
+                <a href="#methodology" class="nav-link block py-3 px-6 text-gray-600 font-medium">Methodology</a>
+                <a href="#discussion" class="nav-link block py-3 px-6 text-gray-600 font-medium">Discussion</a>
+            </nav>
+            <div class="p-6 mt-8 border-t border-gray-200">
+                <p class="text-xs text-gray-500">A web application by <a href="https://sethuiyer.github.io/" target="_blank" class="text-accent-primary hover:underline">Sethurathienam Iyer</a>, based on the paper "A Numerical Investigation of a Spectral Geometric Model for the Riemann Zeta Zeros".</p>
+                <p class="text-xs text-gray-400 mt-2">Published: 20 April 2025 - Independent Researcher</p>
+                <div class="mt-2 space-y-1">
+                    <a href="https://github.com/sethuiyer/LambdaCore-RiemannHypothesis/blob/main/docs/annals_of_mathematics_paper.pdf" target="_blank" class="text-xs text-accent-primary hover:underline block">📄 View Full Paper (PDF)</a>
+                    <a href="https://scholar.google.com/citations?user=ivR07L8AAAAJ&hl=en" target="_blank" class="text-xs text-accent-primary hover:underline block">🎓 Google Scholar Profile</a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-4 sm:p-6 md:p-10">
+            <!-- Introduction Section -->
+            <section id="introduction" class="mb-16 scroll-mt-20">
+                <h1 class="text-4xl md:text-5xl text-gray-800 mb-4">A Spectral Geometric Approach to Approximating Riemann Zeta Zeros</h1>
+                <p class="text-lg text-gray-600 mb-4">This interactive report explores a numerical investigation into the Riemann Hypothesis, one of mathematics' most profound unsolved problems. It details a geometric operator model that approximates the non-trivial zeros of the Riemann zeta function with unprecedented precision.</p>
+                
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-8">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-blue-800">Research Paper</p>
+                            <p class="text-sm text-blue-600">By <a href="https://sethuiyer.github.io/" target="_blank" class="hover:underline font-medium">Sethurathienam Iyer</a> • 20 April 2025 • Independent Researcher</p>
+                            <p class="text-xs text-blue-500 mt-1">
+                                <a href="https://scholar.google.com/citations?user=ivR07L8AAAAJ&hl=en" target="_blank" class="hover:underline">🎓 Google Scholar Profile</a>
+                            </p>
+                        </div>
+                        <a href="https://github.com/sethuiyer/LambdaCore-RiemannHypothesis/blob/main/docs/annals_of_mathematics_paper.pdf" target="_blank" class="bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors">
+                            📄 Download PDF
+                        </a>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                    <div class="stat-card">
+                        <p class="text-sm font-medium text-gray-500">Minimum Relative Error</p>
+                        <p class="text-4xl font-bold text-accent-success mt-2">0.037%</p>
+                        <p class="text-xs text-gray-400 mt-1">For the first non-trivial zero</p>
+                    </div>
+                    <div class="stat-card">
+                        <p class="text-sm font-medium text-gray-500">Grid Resolution</p>
+                        <p class="text-4xl font-bold text-accent-primary mt-2">N = 16,000</p>
+                        <p class="text-xs text-gray-400 mt-1">Leading to a 15,999x15,999 matrix</p>
+                    </div>
+                    <div class="stat-card">
+                        <p class="text-sm font-medium text-gray-500">Mean Relative Error</p>
+                        <p class="text-4xl font-bold text-gray-700 mt-2">0.107%</p>
+                        <p class="text-xs text-gray-400 mt-1">Across the first 10 zeros</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Key Results Section -->
+            <section id="results" class="mb-16 scroll-mt-20">
+                <h2 class="text-3xl font-bold text-gray-800 mb-2">Key Results Dashboard</h2>
+                <p class="text-base text-gray-600 mb-8">The core finding is a strong numerical correspondence between the computed eigenvalues $\lambda_k$ of our geometric operator and the known Riemann zeros $\tau_k$, following the relation $\lambda_k \approx \tau_k^2 + 1/2$. Interact with the chart and table below to explore this high-precision relationship.</p>
+                
+                <div class="stat-card">
+                    <h3 class="text-xl font-semibold mb-4 text-center">Computed Eigenvalues vs. Expected Values from Zeros</h3>
+                    <div class="chart-container">
+                        <canvas id="resultsChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="stat-card mt-8">
+                    <h3 class="text-xl font-semibold mb-4">Detailed Precision Analysis (N=16,000)</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm text-left" id="resultsTable">
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3">Zero #</th>
+                                    <th scope="col" class="px-6 py-3">Riemann Value $\tau_k$</th>
+                                    <th scope="col" class="px-6 py-3">Expected $\tau_k^2 + 1/2$</th>
+                                    <th scope="col" class="px-6 py-3">Computed $\lambda_k$</th>
+                                    <th scope="col" class="px-6 py-3">Relative Error</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- The Model Section -->
+            <section id="model" class="mb-16 scroll-mt-20">
+                <h2 class="text-3xl font-bold text-gray-800 mb-2">The Geometric Operator Model</h2>
+                <p class="text-base text-gray-600 mb-8">This approach is grounded in the Hilbert-Pólya conjecture, which suggests a physical operator could hold the key to the Riemann Hypothesis. Our model constructs such an operator from the geometry of a specially curved 2D manifold. Click through the tabs to understand its components.</p>
+                
+                <div class="stat-card">
+                    <div class="border-b border-gray-200 mb-6">
+                        <nav class="-mb-px flex space-x-8" id="modelTabs">
+                            <button class="tab-button active whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm" data-tab="manifold">The Manifold</button>
+                            <button class="tab-button whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300" data-tab="operator">The Operator</button>
+                            <button class="tab-button whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300" data-tab="conjecture">The Conjecture</button>
+                        </nav>
+                    </div>
+
+                    <div id="tabContent">
+                        <div class="tab-pane active" id="manifold-content">
+                            <h3 class="text-xl font-semibold text-gray-800">The "Inverted" Poincaré Manifold</h3>
+                            <p class="mt-2 text-gray-600">The model is based on a 2-dimensional surface defined by the metric:</p>
+                            <div class="my-4 p-4 bg-gray-50 rounded-lg text-center">
+                                <p class="math-jax">$g = \frac{4}{r^4} dr^2 + \frac{4}{r^2} d\theta^2$</p>
+                            </div>
+                            <p class="text-gray-600">This metric creates a unique space where the point at infinity is collapsed to the origin, resulting in extremely high curvature near $r=0$. This geometric structure is foundational to the model.</p>
+                        </div>
+                        <div class="tab-pane hidden" id="operator-content">
+                             <h3 class="text-xl font-semibold text-gray-800">The Laplace-Beltrami Operator</h3>
+                             <p class="mt-2 text-gray-600">On this manifold, we define an operator $L$ which measures how things "spread out" or resonate within the curved space:</p>
+                             <div class="my-4 p-4 bg-gray-50 rounded-lg text-center">
+                                 <p class="math-jax">$L = -\Delta_g + \frac{1}{4}Id$</p>
+                             </div>
+                             <p class="text-gray-600">Here, $\Delta_g$ is the Laplace-Beltrami operator for the metric $g$. Crucially, this operator is self-adjoint, guaranteeing its eigenvalues are real numbers—a necessary condition for the Hilbert-Pólya conjecture.</p>
+                        </div>
+                        <div class="tab-pane hidden" id="conjecture-content">
+                            <h3 class="text-xl font-semibold text-gray-800">The Spectral Correspondence Conjecture</h3>
+                            <p class="mt-2 text-gray-600">The central hypothesis is that the spectrum of our operator $L$ is directly related to the Riemann zeta function itself through their respective spectral zeta functions:</p>
+                             <div class="my-4 p-4 bg-gray-50 rounded-lg text-center">
+                                <p class="math-jax">$\zeta_L(w) = C \cdot \xi(2w)$</p>
+                            </div>
+                            <p class="text-gray-600">If this conjecture were proven, the properties of the operator $L$ would directly translate to properties of the Riemann zeros, providing a path to proving the Riemann Hypothesis. Our numerical results serve as high-precision evidence for this conjecture.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Methodology Section -->
+            <section id="methodology" class="mb-16 scroll-mt-20">
+                <h2 class="text-3xl font-bold text-gray-800 mb-2">Numerical Methodology & Convergence</h2>
+                <p class="text-base text-gray-600 mb-8">To find the eigenvalues, the continuous operator is converted into a large matrix problem and solved numerically. A key test of a numerical model's validity is its convergence: as the grid resolution (`N`) increases, the error should systematically decrease. Use the slider below to see this effect.</p>
+
+                <div class="stat-card">
+                    <h3 class="text-xl font-semibold mb-2 text-center">Error Convergence with Grid Resolution</h3>
+                    <div class="chart-container mb-6" style="height:350px;">
+                        <canvas id="convergenceChart"></canvas>
+                    </div>
+                    <div class="px-2">
+                        <label for="gridSlider" class="block mb-2 text-sm font-medium text-gray-900">Grid Size (N): <span id="gridSizeLabel" class="font-bold text-accent-primary">16000</span></label>
+                        <input id="gridSlider" type="range" min="0" max="100" value="100" class="w-full">
+                        <div class="flex justify-between text-xs text-gray-500 mt-2">
+                            <span>1,000</span>
+                            <span>4,000</span>
+                            <span>8,000</span>
+                            <span>16,000</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+             <!-- Discussion Section -->
+            <section id="discussion" class="mb-16 scroll-mt-20">
+                <h2 class="text-3xl font-bold text-gray-800 mb-2">Discussion & Future Directions</h2>
+                <p class="text-base text-gray-600 mb-8">While the numerical evidence is compelling, it is essential to acknowledge the limitations and outline the path forward. This work represents a significant step, not a final proof.</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="stat-card">
+                        <h3 class="text-xl font-semibold mb-3">Limitations & Open Questions</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-600">
+                            <li><strong>Conjectural Basis:</strong> The core spectral correspondence is not yet analytically proven.</li>
+                            <li><strong>Numerical Artifacts:</strong> The finite computational domain introduces boundary effects that may cause small errors.</li>
+                            <li><strong>Constant Discrepancy:</strong> A mismatch between the numerically optimal potential ($V_0=1/2$) and theoretical derivations ($V_0=3/4$) needs to be resolved.</li>
+                        </ul>
+                    </div>
+                     <div class="stat-card">
+                        <h3 class="text-xl font-semibold mb-3">Future Research</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-600">
+                           <li><strong>Analytical Proof:</strong> The highest priority is to develop a rigorous proof for the spectral correspondence via heat trace analysis.</li>
+                           <li><strong>Refined Numerics:</strong> Push computations to higher resolutions (N=32k, 64k) to test higher zeros and reduce errors further.</li>
+                           <li><strong>Generalization:</strong> Investigate if similar geometric models can be applied to other L-functions, such as those from elliptic curves.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // --- DATA ---
+        const resultsData = [
+            { id: 1, tau: 14.134725, expected: 200.290455, computed: 200.364466 },
+            { id: 2, tau: 21.022040, expected: 442.426159, computed: 442.274577 },
+            { id: 3, tau: 25.010858, expected: 626.043011, computed: 625.541312 },
+            { id: 4, tau: 30.424876, expected: 926.173087, computed: 925.349806 },
+            { id: 5, tau: 32.935062, expected: 1085.219318, computed: 1085.734790 },
+            { id: 6, tau: 37.586178, expected: 1413.220789, computed: 1414.016071 },
+            { id: 7, tau: 40.918719, expected: 1674.841566, computed: 1675.505556 },
+            { id: 8, tau: 43.327073, expected: 1877.834153, computed: 1877.940717 },
+            { id: 9, tau: 48.005151, expected: 2305.000623, computed: 2302.936034 },
+            { id: 10, tau: 49.773832, expected: 2477.935108, computed: 2478.784558 },
+        ];
+
+        const convergenceData = {
+            gridSizes: [1000, 4000, 8000, 16000],
+            meanErrors: [0.55, 0.21, 0.14, 0.107],
+            minErrors: [0.48, 0.15, 0.08, 0.037]
+        };
+
+        // --- TABLE POPULATION ---
+        const tableBody = document.querySelector('#resultsTable tbody');
+        resultsData.forEach(d => {
+            const error = Math.abs((d.computed - d.expected) / d.expected) * 100;
+            const row = document.createElement('tr');
+            row.className = 'bg-white border-b';
+            row.dataset.id = d.id;
+            row.innerHTML = `
+                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">${d.id}</td>
+                <td class="px-6 py-4">${d.tau.toFixed(6)}</td>
+                <td class="px-6 py-4">${d.expected.toFixed(6)}</td>
+                <td class="px-6 py-4">${d.computed.toFixed(6)}</td>
+                <td class="px-6 py-4 font-medium ${error < 0.1 ? 'text-accent-success' : 'text-gray-700'}">${error.toFixed(3)}%</td>
+            `;
+            tableBody.appendChild(row);
+        });
+
+        // --- CHARTS ---
+        let resultsChartInstance, convergenceChartInstance;
+
+        // 1. Results Chart
+        const createResultsChart = () => {
+            const ctx = document.getElementById('resultsChart').getContext('2d');
+            resultsChartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: resultsData.map(d => `Zero #${d.id}`),
+                    datasets: [{
+                        label: 'Expected from Zeros (τₖ² + 1/2)',
+                        data: resultsData.map(d => d.expected),
+                        backgroundColor: 'rgba(79, 70, 229, 0.6)',
+                        borderColor: 'rgba(79, 70, 229, 1)',
+                        borderWidth: 1,
+                        borderRadius: 4
+                    }, {
+                        label: 'Computed Eigenvalues (λₖ)',
+                        data: resultsData.map(d => d.computed),
+                        backgroundColor: 'rgba(22, 163, 74, 0.6)',
+                        borderColor: 'rgba(22, 163, 74, 1)',
+                        borderWidth: 1,
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { beginAtZero: false, grid: { color: '#e5e7eb' } },
+                        x: { grid: { display: false } }
+                    },
+                    plugins: {
+                        legend: { position: 'top' },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) { label += ': '; }
+                                    if (context.parsed.y !== null) {
+                                        label += context.parsed.y.toFixed(4);
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    onHover: (event, chartElement) => {
+                        const tableRows = document.querySelectorAll('#resultsTable tbody tr');
+                        tableRows.forEach(row => row.classList.remove('table-row-highlight'));
+
+                        if (chartElement.length > 0) {
+                            const index = chartElement[0].index;
+                            const dataId = resultsData[index].id;
+                            const targetRow = document.querySelector(`tr[data-id='${dataId}']`);
+                            if (targetRow) {
+                                targetRow.classList.add('table-row-highlight');
+                            }
+                        }
+                    }
+                }
+            });
+        };
+        
+        // 2. Convergence Chart
+        const createConvergenceChart = () => {
+            const ctx = document.getElementById('convergenceChart').getContext('2d');
+            convergenceChartInstance = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: convergenceData.gridSizes,
+                    datasets: [{
+                        label: 'Mean Relative Error (%)',
+                        data: convergenceData.meanErrors,
+                        borderColor: 'rgba(37, 99, 235, 1)',
+                        backgroundColor: 'rgba(37, 99, 235, 0.1)',
+                        fill: true,
+                        tension: 0.3,
+                        pointBackgroundColor: 'rgba(37, 99, 235, 1)',
+                        pointRadius: 5
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { title: { display: true, text: 'Relative Error (%)' }, grid: { color: '#e5e7eb' } },
+                        x: { type: 'logarithmic', title: { display: true, text: 'Grid Size (N)' }, grid: { display: false } }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: (context) => `Error: ${context.parsed.y.toFixed(3)}% at N=${context.label}`
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        // --- INTERACTIVITY ---
+
+        // Table Hover -> Chart Highlight
+        const tableRows = document.querySelectorAll('#resultsTable tbody tr');
+        tableRows.forEach((row, index) => {
+            row.addEventListener('mouseover', () => {
+                resultsChartInstance.setActiveElements([{ datasetIndex: 0, index: index }, { datasetIndex: 1, index: index }]);
+                resultsChartInstance.update();
+                row.classList.add('table-row-highlight');
+            });
+            row.addEventListener('mouseout', () => {
+                resultsChartInstance.setActiveElements([]);
+                resultsChartInstance.update();
+                 row.classList.remove('table-row-highlight');
+            });
+        });
+        
+        // Tabs for Model Section
+        const tabs = document.querySelectorAll('.tab-button');
+        const panes = document.querySelectorAll('.tab-pane');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                panes.forEach(pane => pane.classList.add('hidden'));
+                const targetPane = document.getElementById(`${tab.dataset.tab}-content`);
+                targetPane.classList.remove('hidden');
+
+                if (window.MathJax && window.MathJax.typesetPromise) {
+                    window.MathJax.typesetPromise([targetPane]).then(() => {
+                        // MathJax re-rendering complete
+                    }).catch((err) => console.log('MathJax typeset failed: ' + err.message));
+                }
+            });
+        });
+        
+        // Convergence Slider
+        const slider = document.getElementById('gridSlider');
+        const label = document.getElementById('gridSizeLabel');
+        const sliderMap = [1000, 4000, 8000, 16000];
+        slider.addEventListener('input', () => {
+            const val = parseInt(slider.value);
+            let index;
+            if(val < 25) index = 0;
+            else if (val < 50) index = 1;
+            else if (val < 75) index = 2;
+            else index = 3;
+
+            label.textContent = sliderMap[index];
+
+            const activeDataPoints = convergenceData.meanErrors.slice(0, index + 1);
+            const activeLabels = convergenceData.gridSizes.slice(0, index + 1);
+            
+            convergenceChartInstance.data.labels = activeLabels;
+            convergenceChartInstance.data.datasets[0].data = activeDataPoints;
+            convergenceChartInstance.update();
+        });
+
+        // Navigation scrolling and active state
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href').substring(1) === entry.target.id) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, { rootMargin: '-20% 0px -80% 0px' });
+
+        sections.forEach(section => observer.observe(section));
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                document.querySelector(link.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+
+        // Initialize charts
+        createResultsChart();
+        createConvergenceChart();
+
+        // Ensure MathJax renders all formulas on page load
+        const initializeMathJax = () => {
+            if (window.MathJax && window.MathJax.typesetPromise) {
+                window.MathJax.typesetPromise().then(() => {
+                    console.log('MathJax initial rendering complete');
+                }).catch((err) => console.log('MathJax initial rendering failed: ' + err.message));
+            } else {
+                // MathJax not ready yet, try again in 100ms
+                setTimeout(initializeMathJax, 100);
+            }
+        };
+        initializeMathJax();
+
+    });
+    </script>
+</body>
+</html>
